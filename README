@@ -1,0 +1,7 @@
+(c) 2012 Michal Huniewicz
+www.m1key.me
+
+library-parser
+This is a Perl project. The goal is to enable iTunes library
+file modifications in conjuction with Audiolicious (see
+https://github.com/m1key/audiolicious).
