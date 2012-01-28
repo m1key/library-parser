@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-#use Modern::Perl;
+use Modern::Perl;
 
-print "library-parser (c) 2012 Michal Huniewicz\n";
-print "www.m1key.me\n";
+say "library-parser (c) 2012 Michal Huniewicz";
+say "www.m1key.me";
