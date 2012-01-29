@@ -29,7 +29,7 @@ while (<$in>) {
 	$artistName = $1;
     } elsif (/<key>Play Count<\/key><integer>(\d+)/) {
 	my $artist = $albumArtistName ? $albumArtistName : $artistName;
-	printf "%s - %s - %s: %d\n", $artist, $albumName, $trackName, $1;
+	#printf "%s - %s - %s: %d\n", $artist, $albumName, $trackName, $1;
 	$trackName = "";
 	$albumName = "";
 	$albumArtistName = "";
@@ -41,3 +41,5 @@ while (<$in>) {
 
 close $in or die "$in: $!";
 close $out or die "$out: $!";
+
+say "Bye";
