@@ -10,4 +10,10 @@ my $libraryPath = &getLibraryPath;
 printf "Using library file: [%s].\n", $libraryPath;
 
 open(my $in,  "<",  $libraryPath)  or die "Can't open library file.";
-say "Opened library file."
+say "Opened library file.";
+
+while (<$in>) {
+    if (/<key>Play Count<\/key><integer>(\d+)/) {
+	print $1 . " ";
+    }
+}
