@@ -3,12 +3,15 @@ use warnings;
 use Modern::Perl;
 
 require "messages.pl";
-
 &printIntro;
 
-if (@ARGV != 1) {
-    die "Error: You must specify exactly one parameter - path to library.";
-}
-
-my $libraryPath = $ARGV[0];
+my $libraryPath = &getLibraryPath;
 printf "Using library file: [%s].\n", $libraryPath;
+
+sub getLibraryPath {
+    if (@ARGV == 0) {
+	"data/iTunes Music Library.xml";
+    } else {
+	$ARGV[0];
+    }
+}
