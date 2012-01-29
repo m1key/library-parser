@@ -38,3 +38,6 @@ while (<$in>) {
     
     print $out $_;
 }
+
+close $in or die "$in: $!";
+close $out or die "$out: $!";
