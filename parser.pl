@@ -9,8 +9,10 @@ require "arguments.pl";
 my $libraryPath = &getLibraryPath;
 printf "Using library file: [%s].\n", $libraryPath;
 
-open(my $in,  "<",  $libraryPath)  or die "Can't open library file.";
+open(my $in,  "<",  $libraryPath)  or die "Can't open library file: $!";
 say "Opened library file.";
+
+open(my $out, ">", "output.xml") or die "Can't open output.xml: $!";
 
 my $trackName = "";
 my $albumName = "";
@@ -33,4 +35,6 @@ while (<$in>) {
 	$albumArtistName = "";
 	$artistName = "";	
     }
+    
+    print $out $_;
 }
