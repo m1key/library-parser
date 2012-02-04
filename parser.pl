@@ -20,7 +20,10 @@ my $dsn = 'dbi:mysql:audiolicious_test:localhost:3306';
 my $user = 'root';
 my $pass = '';
 my $dbh = DBI->connect($dsn, $user, $pass)
- or die "Can't connect to the DB: $DBI::errstr"; 
+ or die "Can't connect to the DB: $DBI::errstr";
+
+my $dbAccess = new DbAccess();
+$dbAccess->connect();
 
 my $trackName = "";
 my $albumName = "";
