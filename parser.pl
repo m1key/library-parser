@@ -15,6 +15,12 @@ say "Opened library file.";
 
 open(my $out, ">", "output.xml") or die "Can't open output.xml: $!";
 
+my $dsn = 'dbi:mysql:audiolicious_test:localhost:3306'; 
+my $user = 'root';
+my $pass = '';
+my $dbh = DBI->connect($dsn, $user, $pass)
+ or die "Can't connect to the DB: $DBI::errstr"; 
+
 my $trackName = "";
 my $albumName = "";
 my $albumArtistName = "";
