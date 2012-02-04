@@ -1,6 +1,7 @@
 use strict;
 use warnings;
 use Modern::Perl;
+use DBI;
 
 require "messages.pl";
 &printIntro;
