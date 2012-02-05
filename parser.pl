@@ -23,6 +23,7 @@ my $albumName = "";
 my $albumArtistName = "";
 my $artistName = "";
 my $totalTime = "";
+my $discNumber = "";
 while (<$in>) {
     if (/<key>Name<\/key><string>(.+)<\/string>/) {
 	$trackName = $1;
@@ -34,14 +35,17 @@ while (<$in>) {
 	$artistName = $1;
     } elsif (/<key>Total Time<\/key><integer>(.+)<\/integer>/) {
 	$totalTime = $1;
-    }elsif (/<key>Play Count<\/key><integer>(\d+)/) {
+    } elsif (/<key>Disc Number<\/key><integer>(.+)<\/integer>/) {
+	$discNumber = $1;
+    } elsif (/<key>Play Count<\/key><integer>(\d+)/) {
 	my $artist = $albumArtistName ? $albumArtistName : $artistName;
-	#printf "%s - %s - %s: %d (%d)\n", $artist, $albumName, $trackName, $1, $totalTime;
+	#printf "%s - %s - %s: %d (%d) (%d)\n", $artist, $albumName, $trackName, $1, $totalTime, $discNumber;
 	$trackName = "";
 	$albumName = "";
 	$albumArtistName = "";
 	$artistName = "";
 	$totalTime = "";
+	$discNumber = "";
     }
     
     print $out $_;
