@@ -24,6 +24,12 @@ sub connect {
 	or die "Can't connect to the DB: $DBI::errstr";
 }
 
+sub handleTrack {
+    my ($self, $artist, $albumName, $trackName, $playCount, $totalTime, $trackNumber, $discNumber) = @_;
+
+    #printf "%s - %s - %s: x%s (%s)(%s:%s)\n", $artist, $albumName, $trackName, $playCount, $totalTime, $trackNumber, $discNumber;
+}
+
 sub disconnect {
     say "Disconnecting from the database.";
     $dbh->disconnect();

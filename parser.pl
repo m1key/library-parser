@@ -45,7 +45,7 @@ while (<$in>) {
 	$playCount = $1;
     } elsif (/<key>Library Folder Count<\/key>/) {
 	my $artist = $albumArtistName ? $albumArtistName : $artistName;
-	#printf "%s - %s - %s: x%s (%s)(%s:%s)\n", $artist, $albumName, $trackName, $playCount, $totalTime, $trackNumber, $discNumber;
+	$dbAccess->handleTrack($artist, $albumName, $trackName, $playCount, $totalTime, $trackNumber, $discNumber);
 	$trackName = "";
 	$albumName = "";
 	$albumArtistName = "";
