@@ -1,7 +1,6 @@
 use strict;
 use warnings;
 use Modern::Perl;
-use DBI;
 use DbAccess;
 
 require "messages.pl";
