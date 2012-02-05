@@ -28,6 +28,15 @@ sub handleTrack {
     my ($self, $artist, $albumName, $trackName, $playCount, $totalTime, $trackNumber, $discNumber) = @_;
 
     #printf "%s - %s - %s: x%s (%s)(%s:%s)\n", $artist, $albumName, $trackName, $playCount, $totalTime, $trackNumber, $discNumber;
+
+    my $selectArtist = $dbh->prepare("select NAME from ARTISTS where NAME = ?");
+    $selectArtist->execute($artist) or die $DBI::errstr;
+    if(my @row = $selectArtist->fetchrow_array()) {
+	#say "Artist found: $row[0]";
+    } else {
+	#say "Artist not found: $artist";
+    }
+    $selectArtist->finish();
 }
 
 sub disconnect {
