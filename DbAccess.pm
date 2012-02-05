@@ -25,7 +25,7 @@ sub connect {
 }
 
 sub disconnect {
-    say "Disconnnecting from the database.";
+    say "Disconnecting from the database.";
     $dbh->disconnect();
 }
 
