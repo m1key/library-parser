@@ -29,14 +29,22 @@ sub handleTrack {
 
     #printf "%s - %s - %s: x%s (%s)(%s:%s)\n", $artist, $albumName, $trackName, $playCount, $totalTime, $trackNumber, $discNumber;
 
-    my $selectArtist = $dbh->prepare("select NAME from ARTISTS where NAME = ?");
-    $selectArtist->execute($artist) or die $DBI::errstr;
-    if(my @row = $selectArtist->fetchrow_array()) {
-	#say "Artist found: $row[0]";
+    my $selectSong = $dbh->prepare("select s.NAME from SONGS s
+join ALBUMS al ON s.ALBUM_ID = al.ALBUM_ID
+join ARTISTS ar ON al.ARTIST_ID = ar.ARTIST_ID
+where s.NAME = ? and al.NAME = ? and ar.NAME = ? AND s.SONG_KEY = ?");
+    $selectSong->execute($trackName, $albumName, $artist, &toKey($totalTime, $trackNumber, $discNumber)) or die $DBI::errstr;
+    if(my @row = $selectSong->fetchrow_array()) {
+	#say "Song found: $row[0]";
     } else {
-	#say "Artist not found: $artist";
+	#say "Song not found: $trackName";
     }
-    $selectArtist->finish();
+    $selectSong->finish();
+}
+
+sub toKey {
+    my ($totalTime, $trackNumber, $discNumber) = @_;
+    return "$totalTime:$trackNumber:$discNumber";
 }
 
 sub disconnect {
