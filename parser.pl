@@ -43,10 +43,12 @@ while (<$in>) {
 	$trackNumber = $1;
     } elsif (/<key>Play Count<\/key><integer>(\d+)/) {
 	$playCount = $1;
-    } elsif (/<key>Library Folder Count<\/key>/) {
+
 	my $artist = $albumArtistName ? $albumArtistName : $artistName;
 	my $playCountFromDb = $dbAccess->handleTrack($artist, $albumName, $trackName, $totalTime, $trackNumber, $discNumber);
-	say "Play count for $trackName: $playCountFromDb";
+	my $totalPlayCount = $playCountFromDb + $playCount;
+	say "Total play count for $trackName: $totalPlayCount";
+
 	$trackName = "";
 	$albumName = "";
 	$albumArtistName = "";
