@@ -33,7 +33,9 @@ sub handleTrack {
 join ALBUMS al ON s.ALBUM_ID = al.ALBUM_ID
 join ARTISTS ar ON al.ARTIST_ID = ar.ARTIST_ID
 join STATS st ON st.SONG_UUID = s.UUID
-where s.NAME = ? and al.NAME = ? and ar.NAME = ? AND s.SONG_KEY = ?");
+join LIBRARIES l on st.library_id = l.library_id
+where s.NAME = ? and al.NAME = ? and ar.NAME = ? AND s.SONG_KEY = ?
+order by l.DATE_ADDED LIMIT 1");
     $selectSong->execute($trackName, $albumName, $artist, &toKey($totalTime, $trackNumber, $discNumber)) or die $DBI::errstr;
     if(my @row = $selectSong->fetchrow_array()) {
 	#say "Song found: $row[0], $row[1]";
