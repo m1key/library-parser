@@ -55,6 +55,9 @@ while (<$in>) {
 	my $playCountFromDb = $dbAccess->handleTrack($artist, $albumName, $trackName, $totalTime, $trackNumber, $discNumber);
 	my $totalPlayCount = $playCountFromDb + $playCount;
 	#say "Total play count for $trackName: $totalPlayCount";
+	my $updatedRow = $_;
+	$updatedRow =~ s/\d+/$totalPlayCount/;
+	#print "$trackName: $updatedRow";
 
 	$trackName = "";
 	$albumName = "";
@@ -65,7 +68,7 @@ while (<$in>) {
 	$trackNumber = "";
 	$playCount = "";
 
-	print $out $_;
+	print $out $updatedRow;
     } else {
 	print $out $_;
     }
